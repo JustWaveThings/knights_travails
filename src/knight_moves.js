@@ -26,5 +26,7 @@ export default function knightMoves(row, col) {
 			potentialMoves.push(combinedKnightMoveNumber);
 		}
 	}
+	const startingPosition = Number(`${row}${col}`);
+	potentialMoves.push(startingPosition);
 	return potentialMoves;
 }

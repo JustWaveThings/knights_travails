@@ -27,9 +27,11 @@ console.log({ gameboardValidMoves });
 
 const test1 = linkedListValidMovesInNumberType.tail();
 console.log(test1);
-console.log(typeof test1.value); // number
+// console.log(typeof test1.value); // number
 
-const test2 = knightMoves(0, 0);
+const test2 = knightMoves(3, 3);
 const test3 = addValidMoves(test2);
-console.log(test2, 'potential moves');
-console.log(test3, 'actual moves');
+console.log(test2, 'potential moves or the starting position');
+
+const testBST = new Tree(test3);
+prettyPrint(testBST.root);
