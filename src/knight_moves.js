@@ -1,4 +1,5 @@
-// create a function to generate all possible moves for a knight
+import addValidMoves from './move_validation';
+
 export default function knightMoves(row, col) {
 	const relativeMoves = [
 		[2, 1],
@@ -16,8 +17,8 @@ export default function knightMoves(row, col) {
 	for (let i = 0; i < relativeMoves.length; i++) {
 		const knightMoveRow = `${row + relativeMoves[i][0]}`;
 		const knightMoveCol = `${col + relativeMoves[i][1]}`;
-		const combinedKnightMove = [knightMoveRow, ...knightMoveCol];
-		potentialMoves.push(combinedKnightMove);
+		const combinedKnightMove = knightMoveRow.concat(knightMoveCol);
+		potentialMoves.push(+combinedKnightMove);
 	}
-	console.log({ potentialMoves });
+	return potentialMoves;
 }

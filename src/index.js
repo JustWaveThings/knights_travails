@@ -20,12 +20,16 @@ import createChessboard from './gameboard';
 import linkedListValidMovesInNumberType, {
 	gameboardValidMoves,
 } from './valid_moves_linked_list';
+import addValidMoves, { actualValidMoves } from './move_validation';
 
 createChessboard();
-console.log(gameboardValidMoves);
+console.log({ gameboardValidMoves });
 
 const test1 = linkedListValidMovesInNumberType.tail();
 console.log(test1);
 console.log(typeof test1.value); // number
 
-knightMoves(3, 3);
+const test2 = knightMoves(0, 0);
+const test3 = addValidMoves(test2);
+console.log(test2, 'potential moves');
+console.log(test3, 'actual moves');
