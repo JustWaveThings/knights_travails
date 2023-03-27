@@ -18,7 +18,13 @@ export default function knightMoves(row, col) {
 		const knightMoveRow = `${row + relativeMoves[i][0]}`;
 		const knightMoveCol = `${col + relativeMoves[i][1]}`;
 		const combinedKnightMove = knightMoveRow.concat(knightMoveCol);
-		potentialMoves.push(+combinedKnightMove);
+		const combinedKnightMoveNumber = Number(combinedKnightMove);
+		if (
+			combinedKnightMoveNumber > 0 &&
+			typeof combinedKnightMoveNumber === 'number'
+		) {
+			potentialMoves.push(combinedKnightMoveNumber);
+		}
 	}
 	return potentialMoves;
 }
