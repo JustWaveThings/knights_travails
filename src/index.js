@@ -3,7 +3,6 @@ import { LinkedList, Node as linkedListNode } from './utils/linked_list';
 import {
 	Node,
 	Tree,
-	// eslint-disable-next-line import/named
 	BuildTree,
 	prettyPrint,
 	find,
@@ -16,8 +15,17 @@ import {
 	rebalance,
 	levelOrder,
 } from './utils/binary_search_tree';
-import { knightMoves, addValidMoves } from './knight_moves';
-import { createChessboard, gameboardValidMoves } from './gameboard';
+import knightMoves from './knight_moves';
+import createChessboard from './gameboard';
+import linkedListValidMovesInNumberType, {
+	gameboardValidMoves,
+} from './valid_moves_linked_list';
 
-createChessboard(0, 0);
+createChessboard();
 console.log(gameboardValidMoves);
+
+const test1 = linkedListValidMovesInNumberType.tail();
+console.log(test1);
+console.log(typeof test1.value); // number
+
+knightMoves(3, 3);

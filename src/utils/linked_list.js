@@ -56,7 +56,7 @@ class LinkedList {
 		let current = this.head;
 		let count = 0;
 		while (count !== index) {
-			count++;
+			++count;
 			current = current.next;
 		}
 		return current;
@@ -152,8 +152,6 @@ class Node {
 	}
 }
 
-export { LinkedList, Node };
-
 const list = new LinkedList();
 list.append(1);
 list.append(2);
@@ -181,3 +179,5 @@ list.insertAt('y', 1);
 // console.log(list.size()); // 3
 
 // console.log(list.getHead()); //  1
+
+export { LinkedList, Node };

@@ -8,7 +8,7 @@
 		"build": "webpack",
 		"watch": "webpack --watch",
 		"start": "webpack serve --open",
-		"startDock": "webpack serve --progress --port 8080",
+		"startDock": "webpack serve --port 8080",
 		"deploy": "gh-pages -d dist"
 	},
 	"repository": {
