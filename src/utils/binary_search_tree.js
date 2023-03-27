@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 export class Node {
 	constructor(value) {
 		this.value = value;
@@ -8,38 +9,37 @@ export class Node {
 
 export class Tree {
 	constructor(array) {
-		this.array = buildTree.removeDuplicates(array);
-		const treeBuild = new buildTree(array);
+		this.array = BuildTree.removeDuplicates(array);
+		const treeBuild = new BuildTree(array);
 		this.root = treeBuild.build(this.array);
 	}
 }
 
-export class buildTree {
+export class BuildTree {
 	constructor(array) {
 		this.array = array;
 	}
+
 	// need to sort for bst to to work
 	static sortArray(array) {
-		return array.sort(function (a, b) {
-			return a - b;
-		});
+		return array.sort((a, b) => a - b);
 	}
 
 	static removeDuplicates(array) {
-		const sorted = buildTree.sortArray(array);
-		let uniqueArray = sorted.filter(function (item, pos) {
-			return sorted.indexOf(item) == pos;
-		});
+		const sorted = BuildTree.sortArray(array);
+		const uniqueArray = sorted.filter(
+			(item, pos) => sorted.indexOf(item) === pos
+		);
 		// console.log(uniqueArray, 'uniqueArray');
 		return uniqueArray;
 	}
 
 	build(uniqueArray) {
 		if (uniqueArray.length === 0) return null;
-		let mid = Math.floor(uniqueArray.length / 2);
-		let root = new Node(uniqueArray[mid]);
-		let left = uniqueArray.slice(0, mid);
-		let right = uniqueArray.slice(mid + 1);
+		const mid = Math.floor(uniqueArray.length / 2);
+		const root = new Node(uniqueArray[mid]);
+		const left = uniqueArray.slice(0, mid);
+		const right = uniqueArray.slice(mid + 1);
 		root.left = this.build(left);
 		root.right = this.build(right);
 		return root;
@@ -61,7 +61,7 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
 };
 
 export function find(bst, value) {
-	let current = bst;
+	const current = bst;
 	if (current === null || current === undefined) {
 		return null;
 	}
@@ -70,9 +70,8 @@ export function find(bst, value) {
 	}
 	if (value < current.value) {
 		return find(current.left, value);
-	} else {
-		return find(current.right, value);
 	}
+	return find(current.right, value);
 }
 
 export function insert(bst, value) {
@@ -99,17 +98,17 @@ export function deleteNode(node, value) {
 		if (node.left === null) {
 			return node.right;
 		}
-		let successor = getSuccessor(node);
+		const successor = getSuccessor(node);
 		node.value = successor.value;
 		node.right = delete (node.right, successor.value);
 		return node;
-	} else if (value < node.value) {
+	}
+	if (value < node.value) {
 		node.left = deleteNode(node.left, value);
 		return node;
-	} else {
-		node.right = deleteNode(node.right, value);
-		return node;
 	}
+	node.right = deleteNode(node.right, value);
+	return node;
 }
 
 export function getSuccessor(delNode) {
@@ -129,6 +128,7 @@ function getSuccessorRecursive(delNode, current, parent, isLeftChild) {
 }
 
 export function depth(bst, value) {
+	// eslint-disable-next-line no-shadow
 	function depthRecursive(node, value, currentDepth) {
 		if (node === null) {
 			return null;
@@ -138,9 +138,8 @@ export function depth(bst, value) {
 		}
 		if (value < node.value) {
 			return depthRecursive(node.left, value, currentDepth + 1);
-		} else {
-			return depthRecursive(node.right, value, currentDepth + 1);
 		}
+		return depthRecursive(node.right, value, currentDepth + 1);
 	}
 	return depthRecursive(bst.root, value, 0);
 }
@@ -190,12 +189,11 @@ function levelOrderRecursive(queue, funct) {
 function preOrder(node, output = []) {
 	if (node === null) {
 		return output;
-	} else {
-		output.push(node.value);
-		preOrder(node.left, output);
-		preOrder(node.right, output);
-		return output;
 	}
+	output.push(node.value);
+	preOrder(node.left, output);
+	preOrder(node.right, output);
+	return output;
 }
 
 function inOrder(node, output = []) {

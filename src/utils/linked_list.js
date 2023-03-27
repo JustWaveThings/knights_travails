@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 class LinkedList {
 	constructor(head = null) {
 		this.head = head;
@@ -8,7 +9,7 @@ class LinkedList {
 	}
 
 	append(value) {
-		let node = new Node(value);
+		const node = new Node(value);
 		if (this.head === null) {
 			this.head = node;
 		} else {
@@ -21,7 +22,7 @@ class LinkedList {
 	}
 
 	prepend(value) {
-		let node = new Node(value);
+		const node = new Node(value);
 		if (this.head === null) {
 			this.head = node;
 		} else {
@@ -118,7 +119,7 @@ class LinkedList {
 	}
 
 	insertAt(value, index) {
-		let node = new Node(value);
+		const node = new Node(value);
 		let current = this.head;
 		let previous = null;
 		let count = 0;
@@ -164,14 +165,14 @@ console.log(list.pop()); // Output: null
  */
 
 list.removeAt(1);
-//console.log(list.toString()); // (1) -> (3) -> null
+// console.log(list.toString()); // (1) -> (3) -> null
 
 list.insertAt('y', 1);
-//console.log(list.toString()); // (1) -> (y) -> (3) -> null
+// console.log(list.toString()); // (1) -> (y) -> (3) -> null
 
-//console.log(list.find('y')); //  1
+// console.log(list.find('y')); //  1
 
-//console.log(list.contains('y')); // true
+// console.log(list.contains('y')); // true
 
 // console.log(list.tail()); //  Node { value: 3, next: null }
 

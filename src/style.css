@@ -44,8 +44,11 @@ span {
 		yellow,
 		purple
 	);
+	/* stylelint-disable */
 	-webkit-background-clip: text;
+/* stylelint-enable */
+
 	background-clip: text;
 	color: transparent;
-	
+
 }

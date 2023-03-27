@@ -1,9 +1,10 @@
 import './style.css';
-import { LinkedList, node as linkedListNode } from './linked_list';
+import { LinkedList, Node as linkedListNode } from './utils/linked_list';
 import {
 	Node,
 	Tree,
-	buildTree,
+	// eslint-disable-next-line import/named
+	BuildTree,
 	prettyPrint,
 	find,
 	insert,
@@ -14,4 +15,9 @@ import {
 	isBalanced,
 	rebalance,
 	levelOrder,
-} from './binary_search_tree';
+} from './utils/binary_search_tree';
+import { knightMoves, addValidMoves } from './knight_moves';
+import { createChessboard, gameboardValidMoves } from './gameboard';
+
+createChessboard(0, 0);
+console.log(gameboardValidMoves);
