@@ -1,5 +1,5 @@
 import './style.css';
-import { FlatTree } from './utils/binary_search_tree';
+import { FlatTree, prettyPrintFlat } from './utils/binary_search_tree';
 import knightMoves from './knight_moves';
 import createChessboard from './gameboard';
 import linkedListValidMovesInNumberType, {
@@ -20,5 +20,5 @@ console.log(test2, 'potential moves or the starting position');
 console.log(test3, 'valid moves');
 
 const testFlat = new FlatTree(test3, 33);
-// prettyPrint(testFlat.root);
+prettyPrintFlat(testFlat.root);
 console.log(testFlat.root, 'flat tree');

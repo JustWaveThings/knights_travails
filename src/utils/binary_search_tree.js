@@ -85,6 +85,17 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
 	}
 };
 
+export const prettyPrintFlat = node => {
+	if (node === null) {
+		return;
+	}
+	console.log(` Pos: ${node.value}, Starting Knight`);
+
+	node.children.forEach((child, index) => {
+		console.log(`├── ${child.value}`);
+	});
+};
+
 export function find(bst, value) {
 	const current = bst;
 	if (current === null || current === undefined) {
