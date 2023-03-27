@@ -1,26 +1,11 @@
 import './style.css';
-import { LinkedList, Node as linkedListNode } from './utils/linked_list';
-import {
-	Node,
-	Tree,
-	BuildTree,
-	prettyPrint,
-	find,
-	insert,
-	deleteNode,
-	getSuccessor,
-	depth,
-	height,
-	isBalanced,
-	rebalance,
-	levelOrder,
-} from './utils/binary_search_tree';
+import { FlatTree } from './utils/binary_search_tree';
 import knightMoves from './knight_moves';
 import createChessboard from './gameboard';
 import linkedListValidMovesInNumberType, {
 	gameboardValidMoves,
 } from './valid_moves_linked_list';
-import addValidMoves, { actualValidMoves } from './move_validation';
+import addValidMoves from './move_validation';
 
 createChessboard();
 console.log({ gameboardValidMoves });
@@ -30,8 +15,10 @@ console.log(test1);
 // console.log(typeof test1.value); // number
 
 const test2 = knightMoves(3, 3);
-const test3 = addValidMoves(test2);
+const test3 = addValidMoves(test2.potentialMoves);
 console.log(test2, 'potential moves or the starting position');
+console.log(test3, 'valid moves');
 
-const testBST = new Tree(test3);
-prettyPrint(testBST.root);
+const testFlat = new FlatTree(test3, 33);
+// prettyPrint(testFlat.root);
+console.log(testFlat.root, 'flat tree');

@@ -13,6 +13,7 @@ export default function knightMoves(row, col) {
 	];
 
 	const potentialMoves = [];
+	const startingPosition = Number(`${row}${col}`);
 
 	for (let i = 0; i < relativeMoves.length; i++) {
 		const knightMoveRow = `${row + relativeMoves[i][0]}`;
@@ -26,7 +27,6 @@ export default function knightMoves(row, col) {
 			potentialMoves.push(combinedKnightMoveNumber);
 		}
 	}
-	const startingPosition = Number(`${row}${col}`);
-	potentialMoves.push(startingPosition);
-	return potentialMoves;
+
+	return { potentialMoves, startingPosition };
 }

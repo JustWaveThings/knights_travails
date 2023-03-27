@@ -1,9 +1,17 @@
+/* eslint-disable class-methods-use-this */
 // eslint-disable-next-line max-classes-per-file
 export class Node {
 	constructor(value) {
 		this.value = value;
 		this.left = null;
 		this.right = null;
+	}
+}
+
+export class FlatNode {
+	constructor(value) {
+		this.value = value;
+		this.children = [];
 	}
 }
 
@@ -15,12 +23,19 @@ export class Tree {
 	}
 }
 
+export class FlatTree {
+	constructor(array, rootValue) {
+		this.array = BuildTree.removeDuplicates(array);
+		const treeBuild = new BuildTree(array);
+		this.root = treeBuild.buildFlat(this.array, rootValue);
+	}
+}
+
 export class BuildTree {
 	constructor(array) {
 		this.array = array;
 	}
 
-	// need to sort for bst to to work
 	static sortArray(array) {
 		return array.sort((a, b) => a - b);
 	}
@@ -30,7 +45,6 @@ export class BuildTree {
 		const uniqueArray = sorted.filter(
 			(item, pos) => sorted.indexOf(item) === pos
 		);
-		// console.log(uniqueArray, 'uniqueArray');
 		return uniqueArray;
 	}
 
@@ -43,6 +57,17 @@ export class BuildTree {
 		root.left = this.build(left);
 		root.right = this.build(right);
 		return root;
+	}
+
+	buildFlat(uniqueArray, rootValue) {
+		if (uniqueArray.length === 0) return null;
+
+		const flatRoot = new FlatNode(rootValue);
+		for (let i = 1; i < uniqueArray.length; i++) {
+			const child = new FlatNode(uniqueArray[i]);
+			flatRoot.children.push(child);
+		}
+		return flatRoot;
 	}
 }
 
@@ -84,6 +109,15 @@ export function insert(bst, value) {
 		bst.right = insert(bst.right, value);
 	}
 	return bst;
+}
+
+export function insertFlat(flatRoot, value) {
+	if (value < flatRoot.value) {
+		bst.left = insert(flatRoot.left, value);
+	} else {
+		bst.right = insert(flatRoot.right, value);
+	}
+	return flatRoot;
 }
 
 export function deleteNode(node, value) {
