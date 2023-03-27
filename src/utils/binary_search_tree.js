@@ -63,7 +63,7 @@ export class BuildTree {
 		if (uniqueArray.length === 0) return null;
 
 		const flatRoot = new FlatNode(rootValue);
-		for (let i = 1; i < uniqueArray.length; i++) {
+		for (let i = 0; i < uniqueArray.length; i++) {
 			const child = new FlatNode(uniqueArray[i]);
 			flatRoot.children.push(child);
 		}
