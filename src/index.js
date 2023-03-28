@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-else-return */
+/* eslint-disable consistent-return */
 /* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
 import './style.css';
@@ -28,38 +31,86 @@ console.log(test1);
 
 // the purpose of this function is to find the goal position  recursively by using the knight's moves in a flat tree structure.
 
-let counter = 0;
-const endRecursion = 10;
-
-function findGoal(startingPosition, goalPosition) {
-	// temp base case to prevent infinite recursion
-	if (counter > endRecursion) return;
+/* function findGoal(startingPosition, goalPosition) {
 	const moveAction = knightMoves(startingPosition);
-	// console.log(moveAction, 'potential moves');
 	const result = addValidMoves(moveAction, startingPosition);
 	console.log(result, 'valid moves from addValidMoves');
 
 	const startingNode = new FlatTree(result, startingPosition);
-	// console.log(startingNode.root);
-	// print the pretty tree
 	prettyPrintFlat(startingNode.root);
-	// eslint-disable-next-line consistent-return
-	startingNode.root.children.forEach(child => {
-		if (child.value === goalPosition) {
-			console.log(`found the goal position: ${child.value}`);
-			return child.value;
-		}
-		const childMoves = knightMoves(child.value);
-		const childValidMoves = addValidMoves(childMoves, child.value);
-		const childNowRoot = new FlatTree(childValidMoves, child.value);
-		prettyPrintFlat(childNowRoot.root);
-	});
-	/* // recursive case
-	startingNode.root.children.forEach(child => {
-		// console.log(typeof child.value);
-		counter++;
-		findGoal(child.value, goalPosition);
-	}); */
+
+	dfs(startingNode.root);
 }
 
-findGoal(33, 20);
+
+
+function dfs(node2, goalPosition) {
+	positionsCounter++;
+	console.log(
+		node2?.value,
+		' <- node value',
+		goalPosition,
+		'<- goal position',
+		positionsCounter,
+		"<- position's checked counter"
+	);
+	if (node2?.value === goalPosition) {
+		console.log(`found the goal position: ${node2?.value}`);
+		goalFound = true;
+		return node2;
+	}
+} */
+
+let positionsCounter = 0;
+const maxRecursion = 50;
+
+let foundGoal = false;
+function findGoal(startingPosition, goalPosition, counter = 1) {
+	let output = null;
+	/* 	// base to prevent infinite recursion if I
+	if (counter > maxRecursion) {
+		console.log('max recursion reached');
+		return null;
+	} */
+	// base case
+	if (foundGoal) {
+		return output;
+	}
+
+	const moveAction = knightMoves(startingPosition);
+	const result = addValidMoves(moveAction, startingPosition);
+
+	const newRootNode = new FlatTree(result, startingPosition);
+
+	newRootNode.root?.children.forEach((_, index) => {
+		console.log(
+			newRootNode.root.children[index].value,
+			'the value being checked against the goal'
+		);
+		const childValue = newRootNode.root.children[index].value;
+		positionsCounter++;
+		if (childValue === goalPosition) {
+			console.log('found the goal position', childValue);
+			output = childValue;
+			foundGoal = true;
+		} else {
+			const found = findGoal(childValue, goalPosition, counter + 1);
+			if (found !== null) {
+				output = found;
+				return;
+			}
+		}
+		if (output !== null) {
+			return;
+		}
+	});
+	return output;
+}
+
+const answer = findGoal(33, 23);
+console.log(
+	answer,
+	'result of findGoal',
+	positionsCounter,
+	'and the number of spaces evaluated'
+);
