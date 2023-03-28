@@ -1,7 +1,5 @@
 import linkedListValidMovesInNumberType from './valid_moves_linked_list';
 
-const actualValidMoves = [];
-
 const allMovesTaken = [];
 
 export default function addValidMoves(movesArray, currentRoot) {
@@ -10,7 +8,7 @@ export default function addValidMoves(movesArray, currentRoot) {
 	if (!allMovesTaken.includes(currentRoot)) {
 		allMovesTaken.push(currentRoot);
 	}
-
+	const actualValidMoves = [];
 	movesArray.forEach(move => {
 		const moveInNumberFormat = Number(move);
 		if (
