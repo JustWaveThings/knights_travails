@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
 import './style.css';
 import { find, FlatTree, prettyPrintFlat } from './utils/binary_search_tree';
@@ -9,10 +10,11 @@ import linkedListValidMovesInNumberType, {
 import addValidMoves from './move_validation';
 
 createChessboard();
-// console.log({ gameboardValidMoves });
 
-// const test1 = linkedListValidMovesInNumberType.tail();
-// console.log(test1);
+const test1 = linkedListValidMovesInNumberType.toString();
+
+console.log(test1);
+
 // console.log(typeof test1.value); // number
 
 // const test2 = knightMoves(3, 3);
@@ -30,11 +32,13 @@ let counter = 0;
 const endRecursion = 10;
 
 function findGoal(startingPosition, goalPosition) {
+	// temp base case to prevent infinite recursion
 	if (counter > endRecursion) return;
 	const moveAction = knightMoves(startingPosition);
 	// console.log(moveAction, 'potential moves');
-	const result = addValidMoves(moveAction);
-	// console.log(result, 'valid moves');
+	const result = addValidMoves(moveAction, startingPosition);
+	console.log(result, 'valid moves from addValidMoves');
+
 	const startingNode = new FlatTree(result, startingPosition);
 	// console.log(startingNode.root);
 	// print the pretty tree
@@ -45,13 +49,17 @@ function findGoal(startingPosition, goalPosition) {
 			console.log(`found the goal position: ${child.value}`);
 			return child.value;
 		}
+		const childMoves = knightMoves(child.value);
+		const childValidMoves = addValidMoves(childMoves, child.value);
+		const childNowRoot = new FlatTree(childValidMoves, child.value);
+		prettyPrintFlat(childNowRoot.root);
 	});
-	// recursive case
+	/* // recursive case
 	startingNode.root.children.forEach(child => {
 		// console.log(typeof child.value);
 		counter++;
 		findGoal(child.value, goalPosition);
-	});
+	}); */
 }
 
-findGoal(33, 26);
+findGoal(33, 20);
