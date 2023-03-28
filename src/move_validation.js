@@ -1,12 +1,23 @@
 import linkedListValidMovesInNumberType from './valid_moves_linked_list';
 
-export const actualValidMoves = [];
+const actualValidMoves = [];
 
-export default function addValidMoves(movesArray) {
+const allMovesTaken = [];
+
+export default function addValidMoves(movesArray, currentRoot) {
 	// console.log(movesArray);
+
+	if (!allMovesTaken.includes(currentRoot)) {
+		allMovesTaken.push(currentRoot);
+	}
+
 	movesArray.forEach(move => {
 		const moveInNumberFormat = Number(move);
-		if (linkedListValidMovesInNumberType.find(moveInNumberFormat)) {
+		if (
+			linkedListValidMovesInNumberType.find(moveInNumberFormat) &&
+			!allMovesTaken.includes(moveInNumberFormat)
+		) {
+			allMovesTaken.push(moveInNumberFormat);
 			actualValidMoves.push(moveInNumberFormat);
 		}
 	});
