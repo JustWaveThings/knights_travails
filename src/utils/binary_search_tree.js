@@ -1,13 +1,15 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable class-methods-use-this */
 // eslint-disable-next-line max-classes-per-file
-export class Node {
+
+/* export class Node {
 	constructor(value) {
 		this.value = value;
 		this.left = null;
 		this.right = null;
 	}
 }
-
+ */
 export class FlatNode {
 	constructor(value) {
 		this.value = value;
@@ -15,14 +17,14 @@ export class FlatNode {
 	}
 }
 
-export class Tree {
+/* export class Tree {
 	constructor(array) {
 		this.array = BuildTree.removeDuplicates(array);
 		const treeBuild = new BuildTree(array);
 		this.root = treeBuild.build(this.array);
 	}
 }
-
+ */
 export class FlatTree {
 	constructor(array, rootValue) {
 		this.array = BuildTree.removeDuplicates(array);
@@ -48,7 +50,7 @@ export class BuildTree {
 		return uniqueArray;
 	}
 
-	build(uniqueArray) {
+	/* build(uniqueArray) {
 		if (uniqueArray.length === 0) return null;
 		const mid = Math.floor(uniqueArray.length / 2);
 		const root = new Node(uniqueArray[mid]);
@@ -57,7 +59,7 @@ export class BuildTree {
 		root.left = this.build(left);
 		root.right = this.build(right);
 		return root;
-	}
+	} */
 
 	buildFlat(uniqueArray, rootValue) {
 		if (uniqueArray.length === 0) return null;
@@ -71,7 +73,7 @@ export class BuildTree {
 	}
 }
 
-// to print a visual representation of the tree in the console
+/* // to print a visual representation of the tree in the console
 export const prettyPrint = (node, prefix = '', isLeft = true) => {
 	if (node === null) {
 		return;
@@ -84,14 +86,14 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
 		prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
 	}
 };
-
+ */
 export const prettyPrintFlat = node => {
 	if (node === null) {
 		return;
 	}
 	console.log(` Pos: ${node.value}, Starting Knight`);
 
-	node.children.forEach((child, index) => {
+	node.children.forEach(child => {
 		console.log(`├── ${child.value}`);
 	});
 };
@@ -110,7 +112,7 @@ export function find(bst, value) {
 	return find(current.right, value);
 }
 
-export function insert(bst, value) {
+/* export function insert(bst, value) {
 	if (bst === null) {
 		return new Node(value);
 	}
@@ -120,7 +122,7 @@ export function insert(bst, value) {
 		bst.right = insert(bst.right, value);
 	}
 	return bst;
-}
+} */
 
 export function insertFlat(flatRoot, value) {
 	if (value < flatRoot.value) {
@@ -131,7 +133,7 @@ export function insertFlat(flatRoot, value) {
 	return flatRoot;
 }
 
-export function deleteNode(node, value) {
+/* export function deleteNode(node, value) {
 	if (node === null) return null;
 	if (value === node.value) {
 		if (node.left === null && node.right === null) {
@@ -154,9 +156,9 @@ export function deleteNode(node, value) {
 	}
 	node.right = deleteNode(node.right, value);
 	return node;
-}
+} */
 
-export function getSuccessor(delNode) {
+/* export function getSuccessor(delNode) {
 	return getSuccessorRecursive(delNode, delNode.right, delNode, false);
 }
 
@@ -170,9 +172,9 @@ function getSuccessorRecursive(delNode, current, parent, isLeftChild) {
 		return delNode;
 	}
 	return getSuccessorRecursive(current, current.left, current, true);
-}
+} */
 
-export function depth(bst, value) {
+/* export function depth(bst, value) {
 	// eslint-disable-next-line no-shadow
 	function depthRecursive(node, value, currentDepth) {
 		if (node === null) {
@@ -256,3 +258,4 @@ function postOrder(node, output = []) {
 	output.push(node.value);
 	return output;
 }
+ */
