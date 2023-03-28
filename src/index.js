@@ -25,10 +25,16 @@ createChessboard();
 // console.log(testFlat.root);
 
 // the purpose of this function is to find the goal position  recursively by using the knight's moves in a flat tree structure.
+
+let counter = 0;
+const endRecursion = 10;
+
 function findGoal(startingPosition, goalPosition) {
+	if (counter > endRecursion) return;
 	const moveAction = knightMoves(startingPosition);
+	// console.log(moveAction, 'potential moves');
 	const result = addValidMoves(moveAction);
-	console.log(result, 'valid moves');
+	// console.log(result, 'valid moves');
 	const startingNode = new FlatTree(result, startingPosition);
 	// console.log(startingNode.root);
 	// print the pretty tree
@@ -41,6 +47,11 @@ function findGoal(startingPosition, goalPosition) {
 		}
 	});
 	// recursive case
+	startingNode.root.children.forEach(child => {
+		// console.log(typeof child.value);
+		counter++;
+		findGoal(child.value, goalPosition);
+	});
 }
 
 findGoal(33, 26);
