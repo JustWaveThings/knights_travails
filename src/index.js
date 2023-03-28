@@ -114,3 +114,5 @@ console.log(
 	positionsCounter,
 	'and the number of spaces evaluated'
 );
+
+// 23 'result of findGoal' 62 'and the number of spaces evaluated'
